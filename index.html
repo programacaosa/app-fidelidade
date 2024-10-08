@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App de Fidelidade e Agendamentos</title>
+  <title>App de Fidelidade e Afiliados</title>
   <!-- Bootstrap CDN -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -26,7 +26,7 @@
       margin: 40px 0;
     }
 
-    .btn-agendamento {
+    .btn-agendamento, .btn-afiliado {
       margin-top: 20px;
     }
 
@@ -44,7 +44,11 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="my-4 text-center">App de Fidelidade e Agendamentos</h1>
+    <header class="d-flex justify-content-between align-items-center my-4">
+      <h1>App de Fidelidade e Afiliados</h1>
+      <!-- Botão para abrir o modal de Afiliados -->
+      <button class="btn btn-warning btn-afiliado" data-toggle="modal" data-target="#afiliadoModal">Programa de Afiliados</button>
+    </header>
 
     <!-- Cadastro de Clientes -->
     <div id="cadastro" class="mb-5">
@@ -185,40 +189,49 @@
       </div>
     </div>
 
+    <!-- Modal para afiliados -->
+    <div class="modal fade" id="afiliadoModal" tabindex="-1" role="dialog" aria-labelledby="afiliadoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="afiliadoModalLabel">Programa de Afiliados</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Programa de Afiliados -->
+            <div id="programa-afiliado" class="mb-5">
+              <h2>Seja um Afiliado</h2>
+              <p>Participe do nosso programa de afiliados e ganhe comissões por indicar novos clientes. Compartilhe seu link personalizado e comece a ganhar recompensas!</p>
+              <button class="btn btn-primary">Gerar Link de Afiliado</button>
+            </div>
+
+            <hr>
+
+            <!-- Painel de Afiliados -->
+            <div id="painel-afiliado" class="mb-5">
+              <h2>Painel de Afiliados</h2>
+              <p>Acompanhe aqui o número de pessoas indicadas e suas recompensas.</p>
+              <ul>
+                <li>Pessoas indicadas: 5</li>
+                <li>Comissões acumuladas: R$100</li>
+                <li>Recompensas: 3 brindes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Bootstrap JS e dependências -->
+  <!-- jQuery e Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <script>
-    // Simulação de dados de histórico de pontos
-    const historicoPontos = [
-      { data: '2024-10-01', descricao: 'Compra 1', pontos: 10 },
-      { data: '2024-10-03', descricao: 'Compra 2', pontos: 20 },
-    ];
-
-    // Preencher a tabela de histórico de pontos
-    const tabelaHistorico = document.getElementById('historico-pontos');
-    historicoPontos.forEach(item => {
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${item.data}</td><td>${item.descricao}</td><td>${item.pontos}</td>`;
-      tabelaHistorico.appendChild(row);
-    });
-
-    // Cadastro de Clientes
-    document.getElementById('cadastro-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nome = document.getElementById('nome').value;
-      const email = document.getElementById('email').value;
-      const telefone = document.getElementById('telefone').value;
-
-      alert(`Cliente cadastrado:\nNome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}`);
-      
-      // Resetar o formulário
-      document.getElementById('cadastro-form').reset();
-    });
-  </script>
 </body>
 </html>
